@@ -1,18 +1,18 @@
-import { useContext, useState } from "react";
+import React, { useContext, useState } from "react";
 import { SettingsContext } from "../context/SettingsContext";
-import Button from "./Button";
 
 const SetPomodoro = () => {
-  const { updateExecute } = useContext(SettingsContext);
   const [newTimer, setNewTimer] = useState({
-    work: 0.3,
-    short: 0.5,
-    long: 1,
+    work: 0.2,
+    short: 0.1,
+    long: 0.5,
     active: "work",
   });
 
-  const handleChange = (event) => {
-    const { name, value } = event.target;
+  const { updateExecute } = useContext(SettingsContext);
+
+  const handleChange = (input) => {
+    const { name, value } = input.target;
     switch (name) {
       case "work":
         setNewTimer({
@@ -31,39 +31,40 @@ const SetPomodoro = () => {
           ...newTimer,
           long: parseInt(value),
         });
-      default:
         break;
     }
   };
-
   const handleSubmit = (e) => {
     e.preventDefault();
     updateExecute(newTimer);
   };
   return (
     <div className="form-container">
-      <form noValidate>
+      <form noValidate onSubmit={handleSubmit}>
         <div className="input-wrapper">
           <input
             className="input"
+            type="text"
             name="work"
             onChange={handleChange}
             value={newTimer.work}
           />
           <input
             className="input"
+            type="text"
             name="shortBreak"
             onChange={handleChange}
             value={newTimer.short}
           />
           <input
             className="input"
+            type="text"
             name="longBreak"
             onChange={handleChange}
             value={newTimer.long}
           />
         </div>
-        <Button title="set timer" _callback={handleSubmit} />
+        <button type="submit">Set Timer</button>
       </form>
     </div>
   );

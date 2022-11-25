@@ -1,27 +1,29 @@
 import { useContext } from "react";
 import { CountdownCircleTimer } from "react-countdown-circle-timer";
-import { SettingsContext } from "../context/SettingsContext.jsx";
+import { SettingsContext } from "../context/SettingsContext";
+const CountdownAnimation = ({ key, timer, animate, children }) => {
+  const { stopAimate } = useContext(SettingsContext);
 
-const CountDownAnimation = ({
-  key = 1,
-  timer = 0.2,
-  animate = true,
-  children,
-}) => {
-  const { stopTimer } = useContext(SettingsContext);
   return (
     <CountdownCircleTimer
       key={key}
       isPlaying={animate}
       duration={timer * 60}
-      colors={["#fe6f6b", 0, 33]}
+      colors={[
+        ["#FE6F6B", 0.33],
+        ["#FE6F6B", 0.33],
+        ["#FE6F6B", 0.33],
+      ]}
       strokeWidth={6}
+      size={320}
       trailColor="#151932"
-      onComplete={() => stopTimer()}
+      onComplete={() => {
+        stopAimate();
+      }}
     >
       {children}
     </CountdownCircleTimer>
   );
 };
 
-export default CountDownAnimation;
+export default CountdownAnimation;
