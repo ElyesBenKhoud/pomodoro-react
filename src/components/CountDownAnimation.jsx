@@ -4,7 +4,7 @@ import { SettingsContext } from "../context/SettingsContext.jsx";
 
 const CountDownAnimation = ({
   key = 1,
-  timer = 2,
+  timer = 0.2,
   animate = true,
   children,
 }) => {
