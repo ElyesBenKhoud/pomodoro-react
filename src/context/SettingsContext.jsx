@@ -61,6 +61,7 @@ function SettingsContextProvider(props) {
 
   function stopAimate() {
     setStartAnimate(false);
+    window.location.reload();
   }
 
   return (
