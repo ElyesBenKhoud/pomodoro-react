@@ -15,6 +15,8 @@ const App = () => {
     updateExecute,
     setCurrentTimer,
     SettingsBtn,
+    audioPlayer,
+    NotifOver,
   } = useContext(SettingsContext);
 
   useEffect(() => {
@@ -68,6 +70,10 @@ const App = () => {
               </CountdownAnimation>
             </div>
           </div>
+          <Button
+            title="PS : Time is in minutes"
+            activeClass={startAnimate ? "active" : undefined}
+          />
           <div className="button-wrapper">
             <Button
               title="Start"
@@ -79,6 +85,7 @@ const App = () => {
               activeClass={startAnimate ? "active" : undefined}
               _callback={pauseTimer}
             />
+            <audio ref={audioPlayer} src={NotifOver} />
           </div>
         </>
       ) : (

@@ -1,8 +1,14 @@
-import { useState, createContext } from "react";
-
+import { useState, createContext, useRef } from "react";
+import NotifOver from "../../notification-over.wav";
 export const SettingsContext = createContext();
 
 function SettingsContextProvider(props) {
+  const audioPlayer = useRef(null);
+
+  function playAudio() {
+    audioPlayer.current.play();
+  }
+
   const [pomodoro, setPomodoro] = useState(0);
   const [executing, setExecuting] = useState({});
   const [startAnimate, setStartAnimate] = useState(false);
@@ -18,6 +24,7 @@ function SettingsContextProvider(props) {
   // start animation fn
   function startTimer() {
     setStartAnimate(true);
+    playAudio();
   }
   // pause animation fn
   function pauseTimer() {
@@ -61,7 +68,7 @@ function SettingsContextProvider(props) {
 
   function stopAimate() {
     setStartAnimate(false);
-    window.location.reload();
+    playAudio();
   }
 
   return (
@@ -77,6 +84,8 @@ function SettingsContextProvider(props) {
         SettingsBtn,
         setCurrentTimer,
         stopAimate,
+        audioPlayer,
+        NotifOver,
       }}
     >
       {props.children}

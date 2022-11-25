@@ -3,9 +3,9 @@ import { SettingsContext } from "../context/SettingsContext";
 
 const SetPomodoro = () => {
   const [newTimer, setNewTimer] = useState({
-    work: 0.2,
-    short: 0.1,
-    long: 0.5,
+    work: 25,
+    short: 5,
+    long: 10,
     active: "work",
   });
 
@@ -44,21 +44,21 @@ const SetPomodoro = () => {
         <div className="input-wrapper">
           <input
             className="input"
-            type="text"
+            type="number"
             name="work"
             onChange={handleChange}
             value={newTimer.work}
           />
           <input
             className="input"
-            type="text"
+            type="number"
             name="shortBreak"
             onChange={handleChange}
             value={newTimer.short}
           />
           <input
             className="input"
-            type="text"
+            type="number"
             name="longBreak"
             onChange={handleChange}
             value={newTimer.long}
